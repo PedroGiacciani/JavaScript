@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de JavaScript</title>
+</head>
+<body>
+    <h1>Digite dois valores: </h1>
+    <input type="number" id="inum1" name="num1">
+    <input type="number" id="inum2" name="num2">
+    <input type="button" value="Verificar" onclick="verificar()">
+    <div id="res">
+        Digite dois valores para ver operações que envolvem eles
+    </div>
+
+    <script>
+        function verificar(){
+            var n1 = Number(document.getElementById('inum1').value)
+            var n2 = Number(document.getElementById('inum2').value)
+            var S = n1 + n2
+            var Sub = n1 - n2
+            var Mult = n1 * n2
+            var Div = n1/n2
+            var res = document.querySelector('div#res')
+
+            res.innerHTML = `A soma dos valores é ${S} <br> A subtração é ${Sub} <br> A multiplicação é ${Mult} <br> E a divisão é ${Div}`
+        }
+    </script>
+</body>
+</html>

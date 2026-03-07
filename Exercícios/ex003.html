@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de JavaScript</title>
+</head>
+<body>
+    <h1>Digite a temperatura em graus Celsius: </h1>
+    <input type="number" id="icelsius" name="celsius">
+    <input type="button" value="Verificar" onclick="verificar()">
+    <div id="res">
+        Digite a temperatura em Celsius para converter para Fahrenheit
+    </div>
+
+    <script>
+        function verificar(){
+            var c = Number(document.getElementById('icelsius').value)
+            var f = (9*c + 160)/5
+            var k = c + 273
+            var res = document.getElementById('res')
+
+            res.innerHTML = `A temperatura em graus Fahrenheit é ${f} e em graus Kelven é ${k}`
+        }
+    </script>
+</body>
+</html>
