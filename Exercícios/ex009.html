@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de JavaScript</title>
+</head>
+<body>
+    <input type="button" value="Clique aqui!" onclick="verificar()">
+    <div id="res">
+        Interaja com o botão!
+    </div>
+
+    <script>
+        function verificar(){
+            let i = document.createElement('a')
+            i.setAttribute('href', 'https://github.com/pedrogiacciani')
+            i.setAttribute('target', '_blank')
+            i.innerHTML = `Clique aqui!`
+            var res = document.getElementById('res')
+            res.innerHTML = ``
+            res.appendChild(i)
+        }
+    </script>
+</body>
+</html>
