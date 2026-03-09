@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de JavaScript</title>
+</head>
+<body>
+    <h1>Digite dois números: </h1>
+    <input type="number" id="inum1" name="num1">
+    <input type="number" id="inum2" name="num2">
+    <input type="button" value="Verificar" onclick="verificar()">
+
+    <div id="res">
+        Digite dois Números
+    </div>
+
+    <input type="button" id="isom" name="som" value="+" onclick="somar()">
+    <input type="button" id="isub" name="sub" value="-" onclick="subtrair()">
+    <input type="button" id="imult" name="mult" value="x" onclick="multiplicar()">
+    <input type="button" id="idiv" name="div" value="/" onclick="dividir()">
+
+    <div id="fim">
+        Escolha uma operação
+    </div>
+
+    <script>
+        function verificar(){
+            var n1 = Number(document.getElementById('inum1').value)
+            var n2 = Number(document.getElementById('inum2').value)
+            var res = document.getElementById('res')
+            res.innerHTML = `Agora escolha uma operação para fazer com ${n1} e ${n2}`
+        }
+
+        function somar(){
+            var n1 = Number(document.getElementById('inum1').value)
+            var n2 = Number(document.getElementById('inum2').value)
+            var s = n1 + n2
+            var fim = document.getElementById('fim')
+            fim.innerHTML = `A soma de ${n1} e ${n2} vale ${s}`
+        }
+
+        function subtrair(){
+            var n1 = Number(document.getElementById('inum1').value)
+            var n2 = Number(document.getElementById('inum2').value)
+            var s = n1 - n2
+            var fim = document.getElementById('fim')
+            fim.innerHTML = `A subtração entre ${n1} e ${n2} vale ${s}`
+        }
+
+        function multiplicar(){
+            var n1 = Number(document.getElementById('inum1').value)
+            var n2 = Number(document.getElementById('inum2').value)
+            var s = n1 * n2
+            var fim = document.getElementById('fim')
+            fim.innerHTML = `A multiplicação entre ${n1} e ${n2} vale ${s}`
+        }
+
+        function dividir(){
+            var n1 = Number(document.getElementById('inum1').value)
+            var n2 = Number(document.getElementById('inum2').value)
+            var s = n1 / n2
+            var fim = document.getElementById('fim')
+            fim.innerHTML = `A divisão entre ${n1} e ${n2} vale ${s}`
+        }
+    </script>
+</body>
+</html>
