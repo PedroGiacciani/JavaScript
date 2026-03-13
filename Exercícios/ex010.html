@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de JavaScript</title>
+</head>
+<body>
+    <p>Digite um número: <input type="number" name="num1" id="inum1"></p>
+    <p>Digite outro número: <input type="number" name="num2" id="inum2"></p>
+    <p>Você deseja operações básicas ou avançadas?: <input type="text" name="op1" id="iop1"></p>
+    <p id="texto">Escolha a operação: <input type="text" name="op2" id="iop2"></p>
+    <input type="button" value="Clique aqui!" onclick="verificar()">
+    
+    <div id="res">
+        Interaja com o botão!
+    </div>
+
+    <script>
+        function verificar(){
+            var n1 = Number(document.getElementById('inum1').value)
+            var n2 = Number(document.getElementById('inum2').value)
+            var op1 = String(document.getElementById('iop1').value)
+            var op2 = String(document.getElementById('iop2').value)
+            var p = document.getElementById('texto')
+            var res = document.getElementById('res')
+
+            switch(op1){
+                case 'básica':
+                    switch(op2){
+                        case 'adição':
+                            var s = n1 + n2
+                            res.innerHTML = `A soma entre ${n1} e ${n2} é ${s}`
+                            break   
+                        case 'subtração':
+                            var s = n1 - n2
+                            res.innerHTML = `A subtração entre ${n1} e ${n2} é ${s}`
+                            break
+                        case 'multiplicação':
+                            var s = n1 * n2
+                            res.innerHTML = `A multiplicação entre ${n1} e ${n2} é ${s}`
+                            break
+                        case 'divisão':
+                            if(n2 != 0){
+                                var s = n1/n2
+                                res.innerHTML = `A divisão entre ${n1} e ${n2} é ${s}`
+                            } else {
+                                res.innerHTML = `Impossível dividir por 0`
+                            }
+                            break
+                        default:
+                            res.innerHTML = `Escreva uma operação válida`
+                            break
+                        }
+                    break
+                case 'avançada':
+                    switch(op2){
+                        case 'resto da divisão': 
+                            if(n1 >= n2){
+                                var s = n1%n2
+                                res.innerHTML = `O resto da divisão entre ${n1} e ${n2} é ${s}`
+                            } else{
+                                res.innerHTML = `A divisão não tem resto por ter resultado decimal`
+                            }
+                            break
+                        case 'soma dos quadrados': 
+                            var s = n1**2 + n2**2
+                            res.innerHTML = `A soma dos quadrados entre ${n1} e ${n2} é ${s}`
+                            break 
+                        case 'incremento': 
+                            var x = n1
+                            var y = n2
+                            var i = ++x
+                            var d = ++y
+                            res.innerHTML = `O incremento de ${n1} é ${i} e o de ${n2} é ${d}`
+                            break
+                        case 'decremento': 
+                            var x = n1
+                            var y = n2
+                            var i = --x
+                            var d = --y
+                            res.innerHTML = `O decremento de ${n1} é ${i} e o de ${n2} é ${d}`
+                            break
+                        default:
+                            res.innerHTML = `Escreva uma operação válida`
+                            break
+                    }
+                    break
+                default:
+                    res.innerHTML = `Escreva uma operação válida`
+                    break
+            }
+        }
+    </script>
+</body>
+</html>
