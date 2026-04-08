@@ -29,6 +29,7 @@ section {
 
 select{
     width: 200px;
+    font-size: 1em;
 }
 
 footer{
