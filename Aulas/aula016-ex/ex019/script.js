@@ -1,10 +1,16 @@
 var a = []
+var sel = document.getElementById('isel')
 
 function adicionar(){
-    a.push(Number(document.getElementById('inum').value))
+    var num = Number(document.getElementById('inum').value)
+
+    if(num.length == 0 || num > 100 || num < 1){
+        window.alert(`[ERRO] Número inválido ou fora do intervalo (1-100)`)
+        return
+    }
+
     var op = document.createElement('option')
-    var sel = document.getElementById('isel')
-    var i = 0
     sel.appendChild(op)
-    op.innerHTML += `Valor ${a}`
-}
+    a.push(num)
+    op.innerHTML = `Valor ${num}`
+}   
