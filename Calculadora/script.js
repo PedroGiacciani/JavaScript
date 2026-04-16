@@ -10,8 +10,13 @@ function adicionar(n){
 }
 
 function resultado(){
-    
+    var conta = numeros.join('')
+    var resultadoFinal = eval(conta)
+    res.innerHTML = resultadoFinal
+    numeros = [resultadoFinal] 
 }
+
+const clear = () => res.innerHTML = ``
 
 /* 
     Funções anônimas e arrow functions:
