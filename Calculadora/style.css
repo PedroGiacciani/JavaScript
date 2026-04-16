@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: ghostwhite;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    padding: 20px;
+    text-align: center;
+}
+
+main > section#calculadora{
+    background-color: white;
+    width: 450px;
+    margin: auto;
+}
+
+main > section#calculadora > div#tela{
+    padding: 20px;
+    margin: 10px auto;
+    border: 1px solid black;
+    text-align: right;
+}
+
+main > section#calculadora > table#botoes{
+    border: 1px solid black;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+main > section#calculadora > table#botoes input{
+    width: 100px;
+    height: 100px;
+}
+
+footer{
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer > a{
+    text-decoration: none;
+    color: black;
+}
+
+footer > a:hover{
+    text-decoration: underline;
+}
