@@ -1,6 +1,11 @@
 var numeros = []
 var res = document.getElementById('tela')
 
+function limpar(){
+    numeros.length = 0
+    res.innerHTML = `Esperando por números...`
+}
+
 function adicionar(n){
     numeros.push(n)
     res.innerHTML = ``
@@ -15,8 +20,6 @@ function resultado(){
     res.innerHTML = resultadoFinal
     numeros = [resultadoFinal] 
 }
-
-const clear = () => res.innerHTML = ``
 
 /* 
     Funções anônimas e arrow functions:
