@@ -38,6 +38,7 @@ main > section#calculadora > table#botoes{
 main > section#calculadora > table#botoes input{
     width: 100px;
     height: 100px;
+    cursor: pointer;
 }
 
 footer{

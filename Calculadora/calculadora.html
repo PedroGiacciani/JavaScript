@@ -35,10 +35,14 @@
                     <td><input type="button" value="X" onclick="adicionar('*')"></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="Clear" onclick="limpar()"></td>
+                    <td><input type="button" value="." onclick="adicionar('.')"></td>
                     <td><input type="button" value="0" onclick="adicionar(0)"></td>
                     <td><input type="button" value="=" onclick="resultado()"></td>
                     <td><input type="button" value="/" onclick="adicionar('/')"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="Clear" onclick="limpar()" style="width: 100%;"></td>
+                    <td colspan="2"><input type="button" value="&lt;--" onclick="deletar()" style="width: 100%;"></td>
                 </tr>
             </table>
         </section>

@@ -21,6 +21,14 @@ function resultado(){
     numeros = [resultadoFinal] 
 }
 
+function deletar(){
+    if(numeros.length == 0){
+        limpar()
+    } else if (numeros.length > 0){
+        numeros.pop()
+    }
+}
+
 /* 
     Funções anônimas e arrow functions:
     Função anônima:
