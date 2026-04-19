@@ -22,10 +22,14 @@ function resultado(){
 }
 
 function deletar(){
-    if(numeros.length == 0){
+    if(numeros.length == 1){
         limpar()
     } else if (numeros.length > 0){
         numeros.pop()
+        for(var pos in numeros){
+            var conta = numeros.join('')
+            res.innerHTML = `${conta}`
+        }
     }
 }
 
