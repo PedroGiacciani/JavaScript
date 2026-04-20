@@ -1,44 +1,37 @@
-var numeros = []
-var res = document.getElementById('tela')
-
-function limpar(){
-    numeros.length = 0
-    res.innerHTML = `Esperando por números...`
-}
+let numeros = []
+let tela = document.getElementById('tela')
 
 function adicionar(n){
+    tela.innerHTML = ``
     numeros.push(n)
-    res.innerHTML = ``
-    for(var pos in numeros){
-        res.innerHTML += `${numeros[pos]}`
+    for(let pos in numeros){
+        tela.innerHTML += `${numeros[pos]}`
     }
 }
 
 function resultado(){
-    var conta = numeros.join('')
-    var resultadoFinal = eval(conta)
-    res.innerHTML = resultadoFinal
-    numeros = [resultadoFinal] 
-}
-
-function deletar(){
-    if(numeros.length == 1){
-        limpar()
-    } else if (numeros.length > 0){
-        numeros.pop()
-        for(var pos in numeros){
-            var conta = numeros.join('')
-            res.innerHTML = `${conta}`
-        }
+    if(numeros.length == 0){
+        alert("Digite pelo menos um número")
+    } else{
+        let conta = numeros.join('')
+        let result = eval(conta)
+        numeros = [result]
+        tela.innerHTML = numeros
     }
 }
 
-/* 
-    Funções anônimas e arrow functions:
-    Função anônima:
-        const nome = function(){}
-        const nome = (){}
-    Arrow function:
-        const nome = () => console.log('pedro')
-        nome()
-*/
+function limpar(){
+    numeros = []
+    tela.innerHTML = `Esperando por números...`
+}
+
+function deletar(){
+    numeros.pop()
+    if(numeros.length == 0){
+        limpar()
+    }
+    for(let pos in numeros){
+        let conta = numeros.join('')
+        tela.innerHTML = conta
+    }
+}

@@ -54,3 +54,13 @@ console.log(c.lastIndexOf('Fortnite')) //Esquerda para a direita
 var num = [1, 2, 3, 4, 5, 6]
 const terceiro = num.filter(n => n == 3)
 console.log(terceiro)
+
+/* 
+    Funções anônimas e arrow functions:
+    Função anônima:
+        const nome = function(){}
+        const nome = (){}
+    Arrow function:
+        const nome = () => console.log('pedro')
+        nome()
+*/
