@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 95vh;
+}
+
+header{
+    text-align: center;
+    padding: 20px;
+}
+
+header > h1{
+    margin-bottom: 10px;
+}
+
+main > section#forca{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+main > section#forca > div#poste{
+    border-left: 3px solid black;
+    border-top: 3px solid black;
+    font-size: 15em;
+    margin: 10px;
+    width: 30%;
+}
+
+main > section#forca > div#poste > p{
+    visibility: hidden;
+}
+
+main > section#forca > div#letras{
+    display: flex;
+    flex-flow: row wrap;
+    position: absolute;
+    top: 80%;
+    left: 5%;
+}
+
+p.caixa{
+    font-size: 2em;
+    margin-right: 20px;
+    padding: 10px;
+    border-bottom: 3px solid black;
+    width: 30px;
+    height: 30px;
+}
+
+footer{
+    text-align: center;
+}
+
+footer > p > a{
+    text-decoration: none;
+    color: black;
+}
+
+footer > p > a:hover{
+    text-decoration: underline;
+}
