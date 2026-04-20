@@ -29,6 +29,16 @@ main > section#forca{
     margin-bottom: 30px;
 }
 
+main > section#forca > div#erros{
+    display: flex;
+    flex-flow: row wrap;
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    padding: 10px;
+    font-size: 1.5em;
+}
+
 main > section#forca > div#poste{
     border-left: 3px solid black;
     border-top: 3px solid black;
