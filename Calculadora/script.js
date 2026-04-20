@@ -1,3 +1,4 @@
+//Declaração de variáveis
 let numeros = []
 let tela = document.getElementById('tela')
 
@@ -10,9 +11,15 @@ function adicionar(n){
 }
 
 function resultado(){
+    let posSoma = numeros.indexOf('+')
+    let posSub = numeros.indexOf('-')
+    let posMult = numeros.indexOf('*')
+    let posDiv = numeros.indexOf('/')
     if(numeros.length == 0){
         alert("Digite pelo menos um número")
-    } else{
+    } else if(posSoma - 1 == posSub || posSoma + 1 == posSub || posSoma - 1 == posMult || posSoma + 1 == posMult || posSoma - 1 == posDiv || posSoma + 1 == posDiv){
+        alert("Verifique a sintaxe da operação")
+    }else{
         let conta = numeros.join('')
         let result = eval(conta)
         numeros = [result]
