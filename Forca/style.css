@@ -60,16 +60,16 @@ main > section#forca > div#letras{
 }
 
 p.caixa{
-    font-size: 2em;
+    font-size: 1.5em;
     margin-right: 20px;
     padding: 10px;
     border-bottom: 3px solid black;
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
 }
 
 main > section#resposta{
-    margin: 10px;
+    margin: 100px 10px;
 }
 
 footer{
