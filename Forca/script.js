@@ -1,8 +1,10 @@
 let teste = document.querySelector('div#letras')
 let txt = document.getElementById('itxt')
+let menu = document.getElementById('menu')
 let letras = []
 
 function validar(){
+    menu.innerHTML = ``
     let palavra = String(txt.value)
     letras = palavra.split('')
 
@@ -19,11 +21,16 @@ function validar(){
 function responder(){
     let c = document.querySelector('input#ires')
     let erros = document.getElementById('erros')
+    let e = []
     let chute = String(c.value)
     if(letras.indexOf(chute) != -1){
         let l = document.getElementById(letras.indexOf(chute))
         l.innerHTML = `${letras[letras.indexOf(chute)]}`
-    } else{
-        erros.innerHTML += `${chute}, `
+    } else if(e.indexOf(chute) == -1){
+        e.push(chute)
+        erros.innerHTML += `${e}, `
+    } 
+    if(e.length >= 7){
+        confirm("Você foi enforcado!!")
     }
 }
