@@ -22,6 +22,12 @@ header > h1{
     margin-bottom: 10px;
 }
 
+main{
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
 main > section#forca{
     display: flex;
     flex-direction: row;
