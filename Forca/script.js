@@ -39,6 +39,7 @@ function responder(){
         erros.innerHTML = `${e}`
         if(e.length >= 7){
             window.confirm("Você foi enforcado!!")
+            recomecar()
         }
     }
     c.value = ``
