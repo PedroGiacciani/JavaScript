@@ -57,9 +57,9 @@ function responder(){
         correto.sort()
         letras.sort()
         if(toString(correto) == toString(letras)){
-            window.confirm("Você acertou a palavra!!")
+            setTimeout(alerta, 500) //Esperar alguns milésimos antes de mostrar
         }
     }
 }
-
+const alerta = () => window.confirm("Você acertou a palavra!!") 
 const recomecar = () => window.location.reload() //Recarregar página
