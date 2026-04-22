@@ -44,7 +44,7 @@ main > section#forca > div#poste{
     border-top: 3px solid black;
     font-size: 15em;
     margin: 10px;
-    width: 30%;
+    width: 200px;
 }
 
 main > section#forca > div#poste > p{
@@ -70,6 +70,15 @@ p.caixa{
 
 main > section#resposta{
     margin: 100px 10px;
+}
+
+main > input#irec{
+    margin: 10px;
+    padding: 10px;
+    width: 100px;
+    background-color: rgba(33, 33, 196, 0.884);
+    color: white;
+    border: 1px solid black;
 }
 
 footer{

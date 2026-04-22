@@ -55,6 +55,9 @@ var num = [1, 2, 3, 4, 5, 6]
 const terceiro = num.filter(n => n == 3)
 console.log(terceiro)
 
+var letras = ['a', 'b', 'a', 'c']
+console.log(letras.lastIndexOf('a'))
+
 /* 
     Funções anônimas e arrow functions:
     Função anônima:
