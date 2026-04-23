@@ -12,11 +12,10 @@
             <h1>Simulador de pedidos</h1>
         </header>
         <main>
-            <p>Qual o sabor da sua pizza: <input type="text" name="pizza" id="ipizza"></p>
-            <input type="button" value="Pedir" id="botao" >
-            <div id="res">
-
-            </div>
+            <p>Qual o seu nome: <input type="text" name="nome" id="inome" autocomplete="off"></p>
+            <p>Qual o sabor da sua pizza: <input type="text" name="pizza" id="ipizza" autocomplete="off"></p>
+            <input type="button" value="Pedir" onclick="chamar()">
+            <div id="res"></div>
         </main>
     </div>
     <footer>
