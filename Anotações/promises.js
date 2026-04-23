@@ -49,3 +49,21 @@ myPromise3
     .catch((err) => {
         console.log(`Aconteceu um erro: ${err}`)
     })
+
+//Resolver várias Promises
+
+const p1 = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("p1 está ok"), 2000)
+})
+
+const p2 = new Promise((resolve, reject) => {
+    resolve("p2 está ok")
+})
+
+const p3 = new Promise((resolve, reject) => {
+    resolve("p3 está ok")
+})
+
+const resolveAll = Promise.all([p1, p2, p3]).then((data) => {
+    console.log(data)
+})
