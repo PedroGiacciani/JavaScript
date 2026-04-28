@@ -15,4 +15,4 @@ frase(function (){
 //frase(() => console.log("Estou com saudades")) mesmo exemplo mas com arrow function
 
 //Callback + parâmetros
-frase("Maria", (nome) => console.log(`${nome}, estou com saudades`))
+frase("Maria", (nome) => console.log(`${nome}, estou com saudades`)) 

@@ -1,33 +1,26 @@
-let nome = 'Pedro'
-let sabor = 'Pepperoni'
+let nome = 'Ricardo'
+let sabor = 'Frango com Catupiry'
 
-function chamar(nome, sabor, callback){
-    setTimeout(() => {
-        callback(nome, sabor, recebido, preparando, pronto, entrega)
-    }, 1000)
+const esperar = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(), 3000)
+    })
 }
 
-function chamada(nome, sabor, c1, c2, c3, c4){
-    c1(nome, sabor)
-    setTimeout(() => {
-        c2(nome, sabor)
-        setTimeout(() => {
-            c3(nome, sabor)
-            setTimeout(() => {
-                c4(nome)
-            
-            }, 1500)
-        }, 1500)
-    }, 1500)
-}
+const pedidoFeito = (nome, sabor) => console.log(`Olá ${nome}, seu pedido de pizza de ${sabor} foi registrado`)
+const preparando = (nome) => console.log(`${nome}, seu pedido está sendo preparado...`)
+const pedidoPronto = (nome, sabor) => console.log(`${nome}, seu pedido de pizza de ${sabor} está pronto e indo até você!`)
+const pedidoEntregue = (nome, sabor) => console.log(`${nome}, pizza de ${sabor} entregue! Obrigado pela preferência`)
 
-const recebido = (nome, sabor) => console.log(`Olá ${nome}, seu pedido de pizza de ${sabor} foi registrado e está sendo preparado!!`)
-const preparando = (nome, sabor) => console.log(`${nome}, sua pizza de ${sabor} está sendo preparada...`)
-const pronto = (nome, sabor) => console.log(`${nome}, sua pizza de ${sabor} está pronta!!`)
-const entrega = (nome) => console.log(`${nome}, seu pedido foi entregue!`)
-
-chamar(nome, sabor, chamada)
-
-// chamar('Amanda', 'Frango com catupiry', pronto, entrega)
-// chamar('Nilo', 'Pepperoni', pronto, entrega)
-// chamar('Robson', 'Mussarela', pronto, entrega)
+esperar().then(() => {
+    pedidoFeito(nome, sabor)
+    return esperar()
+}).then(() => {
+    preparando(nome)
+    return esperar()
+}).then(() => {
+    pedidoPronto(nome, sabor)
+    return esperar()
+}).then(() => {
+    pedidoEntregue(nome, sabor)
+})

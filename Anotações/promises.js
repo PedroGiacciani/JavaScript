@@ -50,7 +50,7 @@ myPromise3
         console.log(`Aconteceu um erro: ${err}`)
     })
 
-//Resolver várias Promises
+//Resolver várias Promises com all
 
 const p1 = new Promise((resolve, reject) => {
     setTimeout(() => resolve("p1 está ok"), 2000)
@@ -65,5 +65,23 @@ const p3 = new Promise((resolve, reject) => {
 })
 
 const resolveAll = Promise.all([p1, p2, p3]).then((data) => {
+    console.log(data)
+})
+
+//Resolver várias Promises com race
+
+const p4 = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("p4 está ok"), 2000)
+})
+
+const p5 = new Promise((resolve, reject) => {
+    resolve("p5 está ok")
+})
+
+const p6 = new Promise((resolve, reject) => {
+    resolve("p6 está ok")
+})
+
+const resolveAllRace = Promise.race([p4, p5, p6]).then((data) => {
     console.log(data)
 })
