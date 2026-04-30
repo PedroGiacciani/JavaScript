@@ -1,9 +1,13 @@
-let nome = 'Ricardo'
-let sabor = 'Frango com Catupiry'
+let nome = 'Leandro'
+let sabor = 'Frango Catupiry'
 
 const esperar = () => {
-    return new Promise((resolve) => {
-        setTimeout(() => resolve(), 3000)
+    return new Promise((resolve, reject) => {
+        if(nome.length == 0 || sabor.length == 0){
+            reject()
+        } else{
+            setTimeout(() => resolve(), 3000)
+        }
     })
 }
 
@@ -23,4 +27,4 @@ esperar().then(() => {
     return esperar()
 }).then(() => {
     pedidoEntregue(nome, sabor)
-})
+}).catch(() => console.log(`[ERRO], Usuário ou Sabor inválido(s)`))
