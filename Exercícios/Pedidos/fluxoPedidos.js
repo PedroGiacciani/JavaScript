@@ -1,12 +1,11 @@
 let estoque = ['tomate', 'cebola', 'pimentão', 'alface', 'cebolinha']
-let verificarPagamento = Math.random() < 0.7
 let item = 'tomate'
 let nome = 'Pedro'
 
 function validarPedido(item){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if(estoque.indexOf(item) != -1){
+            if(estoque.includes(item)){
                 console.log('Produto em estoque')
                 resolve()
             } else{
@@ -17,6 +16,7 @@ function validarPedido(item){
 }
 
 function processarPagamento(nome){
+    let verificarPagamento = Math.random() < 0.7
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if(verificarPagamento == true){
