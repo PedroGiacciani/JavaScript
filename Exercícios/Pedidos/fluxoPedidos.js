@@ -47,10 +47,19 @@ function entregarPedido(nome, item){
     })
 }
 
+async function tentarPagamento(nome){
+    try{
+        await processarPagamento(nome)
+    } catch(erro){
+        console.log(`[ERRO] ${erro}, tentando novamente...`)
+        await processarPagamento(nome)
+    }
+}
+
 async function pedido(item, nome){
     try{
         await validarPedido(item)
-        await processarPagamento(nome)
+        await tentarPagamento(nome)
         await preparandoPedido(item)
         await entregarPedido(nome, item)
         console.log(`Obrigado pela preferência!`)
