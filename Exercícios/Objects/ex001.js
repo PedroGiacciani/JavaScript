@@ -22,7 +22,7 @@ class Brinquedo{
 
 class BrinquedosVoadores extends Brinquedo{
     constructor(nome, cor, size){
-        super(nome, cor, size)
+        super(nome, cor, size) //Executa o Constructor da classe pai
     }
 
     voar(metros, velocidade){
