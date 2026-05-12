@@ -1,3 +1,6 @@
+let nomeLivro = 'A arte da Guerra'
+let usuario = 'Pedro'
+
 class Livro{
     constructor(nome, autor, disponibilidade){
         this.nome = nome
@@ -28,25 +31,28 @@ function isAvaible(nomeLivro){
     }
 }
 
-function emprestarLivro(){
-    return new Promise((resolve, reject) => {
+function emprestarLivro(usuario){
+    let livroEscolhido = livrosDisponiveis.find(pos => pos.nome == nomeLivro)
+    return new Promise((resolve) => {
         setTimeout(() => {
+            livroEscolhido.disponibilidade = false
+            livrosDisponiveis = livros.filter(pos => pos.disponibilidade == 'Disponível')
+            console.log(`Livro emprestado para ${usuario}`)
             resolve()
         }, 2000)
     })
 }
 
-let nomeLivro = 'Cartas de um Diabo ao seu aprendiz'
-let usuario = 'Pedro'
-
 async function pegarLivro(nomeLivro, usuario){
     try{
         if(isAvaible(nomeLivro) == true){
             console.log(`Olá ${usuario}, o livro ${nomeLivro} está disponível.\nAguarde 2 segundos enquanto preparamos ele para você`)
-            await emprestarLivro()
+            await emprestarLivro(usuario)
+        } else{
+            throw new Error('Livro indisponível')
         }
-    } catch{
-
+    } catch(err){
+        console.log(`${err}`)
     }
 }
 
