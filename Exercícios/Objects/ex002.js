@@ -29,3 +29,6 @@ filtrarTamanho.forEach(element => {
 });
 
 console.log(carros.find(pos => pos.nome == 'Uno')) //Procurar carro específico
+
+const justNames = carros.map(num => num.nome)
+console.log(justNames)
