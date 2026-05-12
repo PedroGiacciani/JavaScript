@@ -18,12 +18,36 @@ let livros = [
     new Livro('A arte da Guerra', 'Shun Tzu', false)
 ]
 
-const conferirDisponivel = () => {
-    console.log(livros.filter(pos => pos.disponibilidade == 'Disponível'))
+let livrosDisponiveis = livros.filter(pos => pos.disponibilidade == 'Disponível')
+
+function isAvaible(nomeLivro){
+    if(livrosDisponiveis.find(pos => pos.nome == nomeLivro)){
+        return true
+    } else{
+        return false
+    }
 }
 
-const buscarLivro = () => {
-    
+function emprestarLivro(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve()
+        }, 2000)
+    })
 }
 
-conferirDisponivel()
+let nomeLivro = 'Cartas de um Diabo ao seu aprendiz'
+let usuario = 'Pedro'
+
+async function pegarLivro(nomeLivro, usuario){
+    try{
+        if(isAvaible(nomeLivro) == true){
+            console.log(`Olá ${usuario}, o livro ${nomeLivro} está disponível.\nAguarde 2 segundos enquanto preparamos ele para você`)
+            await emprestarLivro()
+        }
+    } catch{
+
+    }
+}
+
+pegarLivro(nomeLivro, usuario)
