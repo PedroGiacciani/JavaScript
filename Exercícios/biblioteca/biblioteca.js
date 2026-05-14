@@ -1,5 +1,5 @@
 //Declaração de Variáveis
-let nomeLivro = 'A Arte da Guerra'
+let nomeLivro = 'bla bla bla'
 let usuario = 'Pedro'
 
 //Declaração da Classe Livro
@@ -7,11 +7,7 @@ class Livro{
     constructor(nome, autor, disponibilidade){
         this.nome = nome
         this.autor = autor
-        if(disponibilidade == true){
-            this.disponibilidade = 'Disponível'
-        } else{
-            this.disponibilidade = 'Indisponível'
-        }
+        this.disponibilidade = disponibilidade
     }
 }
 
@@ -24,37 +20,47 @@ let livros = [
     new Livro('A Arte da Guerra', 'Sun Tzu', true)
 ]
 
-let livrosDisponiveis = livros.filter(pos => pos.disponibilidade == 'Disponível')
+let livrosDisponiveis = livros.filter(pos => pos.disponibilidade == true)
 
 function isAvaible(nomeLivro){
-    let livroEscolhido = livrosDisponiveis.find(pos => pos.nome == nomeLivro)
+    let livroEscolhido = livros.find(pos => pos.nome == nomeLivro)
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if(livroEscolhido){
+            if(livroEscolhido != undefined && livroEscolhido.disponibilidade == true){
                 console.log(`Seu livro: ${nomeLivro} está sendo preparado...`)
                 resolve()
+            }else if(livroEscolhido != undefined && livroEscolhido.disponibilidade == false){
+                console.log(`Obrigado pela preferência ao alugar nosso livro!!`)
+                resolve()
             }else{
-                reject(`Sentimos muito, seu livro: ${nomeLivro} está indisponível`)
+                reject(`Sentimos muito, parece que esse livro se encontra indisponível`)
             }
         }, 2000)
     })
 }
 
 function prepararLivro(nomeLivro, usuario){
-    let livroEscolhido = livrosDisponiveis.find(pos => pos.nome == nomeLivro)
+    let livroEscolhido = livros.find(pos => pos.nome == nomeLivro)
     return new Promise((resolve) => {
         setTimeout(() => {
-            livroEscolhido.disponibilidade = false
-            livrosDisponiveis = livros.filter(pos => pos.disponibilidade == 'Disponível')
-            console.log(`Livro: ${nomeLivro}, emprestado para ${usuario}`)
-            resolve()
+            if(livroEscolhido.disponibilidade == true){
+                livroEscolhido.disponibilidade = false
+                livrosDisponiveis = livros.filter(pos => pos.disponibilidade == true)
+                console.log(`Livro: ${nomeLivro}, emprestado para ${usuario}`)
+                resolve()
+            }else{
+                livroEscolhido.disponibilidade = true
+                livrosDisponiveis = livros.filter(pos => pos.disponibilidade == true)
+                console.log(`Livro: ${nomeLivro}, devolvido por ${usuario}`)
+                resolve()                
+            }
         }, 4000)  
     })
 }
 
-async function emprestarLivro(nomeLivro, usuario){
+async function interagirLivro(nomeLivro, usuario){
     try{
-        console.log(`Olá ${usuario}, agradecemos a preferência!!`)
+        console.log(`Olá ${usuario},`)
         await isAvaible(nomeLivro)
         await prepararLivro(nomeLivro, usuario)
     } catch(err){
@@ -62,4 +68,4 @@ async function emprestarLivro(nomeLivro, usuario){
     }
 }
 
-emprestarLivro(nomeLivro, usuario)
+interagirLivro(nomeLivro, usuario)
