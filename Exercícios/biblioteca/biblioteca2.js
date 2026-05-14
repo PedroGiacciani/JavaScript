@@ -1,6 +1,6 @@
 //Declaração de Variáveis
-let nomeLivro = 'A Arte da Guerra'
-let usuario = 'Pedro'
+let nomeLivro = 'Cartas de um Diabo ao seu Aprendiz'
+let usuario = 'Rosangela'
 
 //Declaração da Classe Livro
 class Livro{
@@ -11,24 +11,31 @@ class Livro{
     }
 
     emprestarLivro(usuario){
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             setTimeout(() => {
-                console.log(`Agradecemos a preferência em alugar um livro conosco!!`)
                 if(this.disponibilidade == true){
                     this.disponibilidade = false
                     console.log(`Livro ${this.nome} emprestado para ${usuario}`)
                     resolve()
                 } else if(this.disponibilidade == false){
-                    this.devolverLivro(usuario)
-                    resolve()
+                    reject(`Sentimos muito, parece que ${this.nome} está indisponível!!`)
                 }
             }, 2000);
         })    
     }
 
     devolverLivro(usuario){
-        this.disponibilidade = true
-        console.log(`Livro: ${this.nome} devolvido por ${usuario}`)
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if(this.disponibilidade == false){
+                    this.disponibilidade = true
+                    console.log(`Livro ${this.nome} devolvido por ${usuario}`)
+                    resolve()
+                } else if(this.disponibilidade == true){
+                    reject(`Sentimos muito, parece que ${this.nome} já foi devolvido!!`)
+                }
+            }, 3000);
+        })  
     } 
 }
 
@@ -43,14 +50,23 @@ let livros = [
 
 let livroEscolhido = livros.find(pos => pos.nome == nomeLivro)
 
-
-async function interagirLivro(usuario){
-    console.log(`Olá ${usuario},`)
-    if(livroEscolhido != undefined){
-        await livroEscolhido.emprestarLivro(usuario)
-    } else{
-        console.log(`Sentimos muito, parece que o livro que procura está indisponível`)
+async function interagirLivro(promessa){
+    console.log(`Olá ${usuario},\nAgradecemos a preferência em alugar um livro conosco!`)
+    try{
+        if(promessa == `devolver`){
+            await livroEscolhido.devolverLivro(usuario)
+        }else if(promessa == `emprestar`){
+            await livroEscolhido.emprestarLivro(usuario)
+        }else{
+            throw new Error(`Função ${promessa} inválida`)
+        }
+    }catch(err){
+        console.log(`${err}`)
     }
 }
 
-interagirLivro(usuario)
+if(livroEscolhido == undefined){
+    console.log(`Sentimos muito, esse livro não faz parte do nosso catálogo`)
+}else{
+    interagirLivro(`devolver`)
+}
