@@ -11,31 +11,34 @@ class Carrinho{
         this.produtos = []
     }
 
-    adicionarProduto(item, quantidade){
-        let falta = (quantidade - item.produto.estoque) 
-        for(let i = 0; i < quantidade && item.produto.estoque > 0; i++){
+    adicionarProduto(item){
+        let itemExistente = this.produtos.find(pos => pos.produto == item.produto)
+        if(!itemExistente){
             this.produtos.push(item)
-            item.produto.estoque -= 1
-        }
-        if(item.produto.estoque <= 0){
-            console.log(`${falta} ${item.produto.nome}(s) fora de estoque`)
+        }else{
+            itemExistente.quantidade += item.quantidade
         }
     }
 
-    removerProduto(item){
+    removerProduto(nomeProduto){
+        let item = this.produtos.find(pos => pos.produto.nome == nomeProduto)
         let index = this.produtos.indexOf(item)
-        if(index != -1){
+        if(item.quantidade > 1){
+            item.quantidade -= 1
+        }else if(item.quantidade == 1){
             this.produtos.splice(index, 1)
-            item.produto.estoque += 1
+        }else{
+            throw new Error(`O produto que você deseja remover não está no carrinho`)
         }
+        console.log(`1 ${nomeProduto} removido(a) do carrinho!`)
     }
 
     calcularTotal(){
-        return this.produtos.reduce((acc, cur) => acc + cur.produto.preco * cur.quantidade, 0)  
+        return this.produtos.reduce((acc, cur) => acc + (cur.produto.preco * cur.quantidade), 0)  
     }
 
     listarProdutos(){
-        return this.produtos.map(pos => pos.produto.nome)
+        return this.produtos.map(pos => `${pos.quantidade} ${pos.produto.nome}(s)`)
     }
 }
 
@@ -48,7 +51,7 @@ const sabao = new Produto('sabão em pó', 11.00, 6)
 const produtos = [
     {
         produto: coca,
-        quantidade: 4
+        quantidade: 3
     },
     {
         produto: tomate,
@@ -56,7 +59,7 @@ const produtos = [
     },
     {
         produto: picanha,
-        quantidade: 21
+        quantidade: 2
     },
 ]
 
@@ -65,7 +68,7 @@ const addProdutos = (produtos) => produtos.forEach(pos => carrinho.adicionarProd
 const verificarEstoque = (produtos) => {
     return new Promise((resolve, reject) =>{
         setTimeout(() => {
-            if(produtos.every(pos => pos.produto.estoque > 0) == true){
+            if(produtos.every(pos => pos.produto.estoque >= pos.quantidade) == true){
                 resolve(`Produtos disponíveis e adicionados ao carrinho!`)
             }else{
                 reject(`Produtos indisponíveis!`)
@@ -80,10 +83,12 @@ async function finalizarCompra(produtos){
         const msg = await verificarEstoque(produtos)
         console.log(msg)
         addProdutos(produtos)
+        //carrinho.removerProduto('coca-cola')
+
+        console.log('\nSeu carrinho:')
         console.log(carrinho.listarProdutos())
-        console.log(produtos)
         const valorFinal = carrinho.calcularTotal()
-        console.log(`A compra deu: R$${valorFinal}`)
+        console.log(`\nTotal: R$${valorFinal}`)
     }catch(err){
         console.log(`[ERRO] ${err}`)
     }
