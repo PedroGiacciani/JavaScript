@@ -18,6 +18,7 @@ class Carrinho{
         }else{
             itemExistente.quantidade += item.quantidade
         }
+        item.produto.estoque -= item.quantidade
     }
 
     removerProduto(nomeProduto){
@@ -30,6 +31,7 @@ class Carrinho{
         }else{
             throw new Error(`O produto que você deseja remover não está no carrinho`)
         }
+        item.produto.estoque += 1
         console.log(`1 ${nomeProduto} removido(a) do carrinho!`)
     }
 
@@ -83,12 +85,13 @@ async function finalizarCompra(produtos){
         const msg = await verificarEstoque(produtos)
         console.log(msg)
         addProdutos(produtos)
-        //carrinho.removerProduto('coca-cola')
+        carrinho.removerProduto('coca-cola')
 
         console.log('\nSeu carrinho:')
         console.log(carrinho.listarProdutos())
         const valorFinal = carrinho.calcularTotal()
         console.log(`\nTotal: R$${valorFinal}`)
+        console.log(carrinho.produtos)
     }catch(err){
         console.log(`[ERRO] ${err}`)
     }
