@@ -52,17 +52,9 @@ const sabao = new Produto('sabão em pó', 11.00, 6)
 
 const produtos = [
     {
-        produto: coca,
-        quantidade: 3
-    },
-    {
-        produto: tomate,
-        quantidade: 1
-    },
-    {
-        produto: picanha,
-        quantidade: 2
-    },
+        produto: sabao,
+        quantidade: 5
+    }
 ]
 
 const carrinho = new Carrinho()
@@ -85,13 +77,12 @@ async function finalizarCompra(produtos){
         const msg = await verificarEstoque(produtos)
         console.log(msg)
         addProdutos(produtos)
-        carrinho.removerProduto('coca-cola')
+        //carrinho.removerProduto('coca-cola')
 
         console.log('\nSeu carrinho:')
         console.log(carrinho.listarProdutos())
         const valorFinal = carrinho.calcularTotal()
         console.log(`\nTotal: R$${valorFinal}`)
-        console.log(carrinho.produtos)
     }catch(err){
         console.log(`[ERRO] ${err}`)
     }
