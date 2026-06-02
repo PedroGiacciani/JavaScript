@@ -50,6 +50,13 @@ class Carrinho{
     }
 }
 
+class Usuario{
+    constructor(userName, saldo){
+        this.userName = userName
+        this.saldo = saldo
+    }
+}
+
 //Declaração dos produtos
 const tomate = new Produto('tomate', 7.50, 4)
 const maca = new Produto('maçã', 3.50, 8)
@@ -82,9 +89,14 @@ const verificarEstoque = (produtos) => {
     })
 }
 
+let userName = 'Oliver'
+let saldo = 2000
+const usuario = new Usuario(userName, saldo)
+
 //Função base que chama todo o resto
 async function finalizarCompra(produtos){
     try{ //Tenta fazer isso, se der erro o catch pega
+        console.log(`Olá ${usuario.userName}\nSaldo atual: R$${usuario.saldo}`)
         const msg = await verificarEstoque(produtos)
         console.log(msg)
         addProdutos(produtos)
@@ -94,6 +106,7 @@ async function finalizarCompra(produtos){
         console.log(carrinho.listarProdutos())
         const valorFinal = carrinho.calcularTotal()
         console.log(`\nTotal: R$${valorFinal}`)
+        console.log(`\nSaldo após a compra: R$${usuario.saldo - valorFinal}`)
     }catch(err){ //Verificação de erros
         console.log(`[ERRO] ${err}`)
     }
