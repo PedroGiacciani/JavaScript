@@ -6,7 +6,7 @@ fetch(url)
     .then(json => console.log(json))
 //
 
-const url2 = 'https://jsonplaceholder.typicode.com/todos'
+const url2 = 'https://jsonplaceholder.typicode.com/posts/1'
 
 fetch(url2)
     .then(resposta => resposta.json())
