@@ -58,6 +58,9 @@ console.log(terceiro)
 var letras = ['a', 'b', 'a', 'c']
 console.log(letras.lastIndexOf('a'))
 
+let pos = a.find(pos => pos == 'pedro')
+console.log(pos)
+
 /* 
     Funções anônimas e arrow functions:
     Função anônima:
