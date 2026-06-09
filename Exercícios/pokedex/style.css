@@ -8,8 +8,16 @@
 body{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1{
@@ -17,8 +25,14 @@ h1{
     margin: 20px 0px;
 }
 
-div#form{
-    margin: 20px;
+div#card{
+    display: none;
+    width: 450px;
+    background-color: rgb(248, 247, 242);
+    margin: 20px 0px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 5px solid silver;
 }
 
 p{
@@ -28,4 +42,19 @@ p{
 
 div#imagem img{
     width: 100%;
+    align-self: center;
+}
+
+div#status{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+footer a{
+    text-decoration: none;
+    color: black;
+}
+
+footer a:hover{
+    text-decoration: underline;
 }

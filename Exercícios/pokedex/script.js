@@ -2,7 +2,8 @@ let btnEnvio = document.getElementById('btn-enviar')
 
 btnEnvio.addEventListener('click', () => {
     let pokeName = document.getElementById('inome-pokemon')
-    let campoRes = document.getElementById('res')
+    let campoRes = document.getElementById('card')
+    campoRes.style.display = 'block'
 
     if(pokeName.value.length == 0){
         campoRes.innerHTML = `<p>[ERRO]: Campo vazio, digite um nome para procurar</p>`
@@ -17,13 +18,15 @@ btnEnvio.addEventListener('click', () => {
             return response.json()
         })
         .then(pokemon => {
+            console.log(pokemon)
             campoRes.innerHTML = ``
-            campoRes.innerHTML += `<p><b>Nome do pokémon:</b> ${pokemon.name}</p>`
-            campoRes.innerHTML += `<p><b>Id do pokémon:</b> ${pokemon.id}</p>`
+            campoRes.innerHTML += `<p><b>${pokemon.name}</b></p>`
+            campoRes.innerHTML += `<div id="imagem"><img src="${pokemon.sprites.front_default}" alt="imagem do ${pokemon.name}"></div>`
+            //campoRes.innerHTML += `<p><b>Id do pokémon:</b> ${pokemon.id}</p>`
             campoRes.innerHTML += `<p><b>Peso do pokémon:</b> ${pokemon.weight}</p>`
             campoRes.innerHTML += `<p><b>Altura do pokémon:</b> ${pokemon.height}</p>`
             campoRes.innerHTML += `<p><b>Tipos do pokémon:</b> ${pokemon.types.map(pos => pos.type.name).join(" - ")}</p>`
-            campoRes.innerHTML += `<div id="imagem"><img src="${pokemon.sprites.front_default}" alt="imagem do ${pokemon.name}"></div>`
+            campoRes.innerHTML += `<p><b>Status do pokémon:</b></p><br><div id="status">${pokemon.stats.map(pos => `<p><b>${pos.stat.name}</b>: ${pos.base_stat}</p>`).join('')}</div>`
         })
         .catch(error => {
             campoRes.innerHTML = `<p>[ERRO]: ${error}</p>`
