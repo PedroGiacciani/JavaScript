@@ -1,6 +1,15 @@
 let btnEnvio = document.getElementById('btn-enviar')
+let barraPesquisa = document.getElementById('inome-pokemon')
 
-btnEnvio.addEventListener('click', () => {
+barraPesquisa.addEventListener('keydown', (event) => {
+    if(event.key == 'Enter'){
+        procurarPokemon()
+    }
+})
+
+btnEnvio.addEventListener('click', () => procurarPokemon())
+
+function procurarPokemon(){
     let pokeName = document.getElementById('inome-pokemon')
     let campoRes = document.getElementById('card')
     campoRes.style.display = 'block'
@@ -22,7 +31,7 @@ btnEnvio.addEventListener('click', () => {
             console.log(pokemon)
 
             const tiposPokemon = {
-                normal: { cor: '#a8a77a'},
+                normal: { cor: '#a8a77a', icon: "fa-regular fa-circle-dot"},
                 fire: {cor: '#EE8130', icon: "fa-solid fa-fire"},
                 water: {cor: '#6390F0', icon: "fa-solid fa-water"},
                 electric: {cor: '#F7D02C', icon: "fa-solid fa-bolt-lightning"},
@@ -50,7 +59,7 @@ btnEnvio.addEventListener('click', () => {
                     linear-gradient(135deg, ${cor1}, ${tiposPokemon[tipo2].cor})
                 `
             }else{
-                campoRes.style.backgroundColor = cor1
+                campoRes.style.background = cor1
             }
 
             const icone1 = tiposPokemon[tipo1].icon
@@ -73,4 +82,4 @@ btnEnvio.addEventListener('click', () => {
     }
 
     pokeName.focus()
-})  
+}
