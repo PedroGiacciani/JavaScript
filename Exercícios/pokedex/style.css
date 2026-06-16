@@ -48,7 +48,8 @@ p{
 }
 
 div#imagem{
-    background-color: white;
+    background: white url('midia/fundo_card_pokemon.jpeg') no-repeat bottom center;
+    background-size: cover;
     margin: 10px 0px;
     border: 3px solid black;
 }
