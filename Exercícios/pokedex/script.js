@@ -18,15 +18,45 @@ btnEnvio.addEventListener('click', () => {
             return response.json()
         })
         .then(pokemon => {
+
             console.log(pokemon)
+
+            const tiposPokemon = {
+                normal: { cor: '#a8a77a'},
+                fire: {cor: '#EE8130', icon: "fa-solid fa-fire"},
+                water: {cor: '#6390F0', icon: "fa-solid fa-water"},
+                electric: {cor: '#F7D02C', icon: "fa-solid fa-bolt-lightning"},
+                grass: {cor: '#7AC74C', icon: "fa-solid fa-seedling"},
+                ice: {cor: '#96D9D6', icon: "fa-solid fa-snowflake"},
+                fighting: {cor: '#C22E28', icon: "fa-solid fa-hand-fist"},
+                poison: {cor: '#A33EA1', icon: "fa-solid fa-skull-crossbones"},
+                ground: {cor: '#E2BF65', icon: "fa-solid fa-mountain"},
+                flying: {cor: '#A98FF3', icon: "fa-solid fa-wind"},
+                psychic: {cor: '#F95587', icon: "fa-solid fa-brain"},
+                bug: {cor: '#A6B91A', icon: "fa-solid fa-bug"},
+                rock: {cor: '#B6A136', icon: "fa-solid fa-hill-rockslide"},
+                ghost: {cor: '#735797', icon: "fa-solid fa-ghost"},
+                dragon: {cor: '#6F35FC', icon: "fa-solid fa-dragon"},
+                dark: {cor: '#705746', icon: "fa-brands fa-sith"},
+                steel: {cor: '#B7B7CE', icon: "fa-solid fa-magnet"},
+                fairy: {cor: '#D685AD', icon: "fa-solid fa-hand-sparkles"}
+            }
+
+            const tipo = pokemon.types[0].type.name
+            const cor = tiposPokemon[tipo].cor
+            const icone = tiposPokemon[tipo].icon
+            campoRes.style.backgroundColor = cor
+
+            const fundoPokemon = document.querySelector('div#imagem')
+
+
             campoRes.innerHTML = ``
-            campoRes.innerHTML += `<p><b>${pokemon.name}</b></p>`
-            campoRes.innerHTML += `<div id="imagem"><img src="${pokemon.sprites.front_default}" alt="imagem do ${pokemon.name}"></div>`
-            //campoRes.innerHTML += `<p><b>Id do pokémon:</b> ${pokemon.id}</p>`
-            campoRes.innerHTML += `<p><b>Peso do pokémon:</b> ${pokemon.weight}</p>`
-            campoRes.innerHTML += `<p><b>Altura do pokémon:</b> ${pokemon.height}</p>`
-            campoRes.innerHTML += `<p><b>Tipos do pokémon:</b> ${pokemon.types.map(pos => pos.type.name).join(" - ")}</p>`
-            campoRes.innerHTML += `<p><b>Status do pokémon:</b></p><br><div id="status">${pokemon.stats.map(pos => `<p><b>${pos.stat.name}</b>: ${pos.base_stat}</p>`).join('')}</div>`
+
+            campoRes.innerHTML += `<div id="inicio"><p><b>${pokemon.name}</b></p><p><i class="${icone}"></i> <b>${pokemon.types.map(pos => pos.type.name).join(" - ")}</b></p></div>`
+
+            campoRes.innerHTML += `<div id="imagem"><img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="imagem do ${pokemon.name}"></div>`
+
+            campoRes.innerHTML += `<div id="status">${pokemon.stats.map(pos => `<p><b>${pos.stat.name}</b>: ${pos.base_stat}</p>`).join('')}</div>`
         })
         .catch(error => {
             campoRes.innerHTML = `<p>[ERRO]: ${error}</p>`
