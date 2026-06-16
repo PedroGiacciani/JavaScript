@@ -42,17 +42,26 @@ btnEnvio.addEventListener('click', () => {
                 fairy: {cor: '#D685AD', icon: "fa-solid fa-hand-sparkles"}
             }
 
-            const tipo = pokemon.types[0].type.name
-            const cor = tiposPokemon[tipo].cor
-            const icone = tiposPokemon[tipo].icon
-            campoRes.style.backgroundColor = cor
+            const tipo1 = pokemon.types[0].type.name
+            const tipo2 = pokemon.types[1]?.type.name
+            const cor1 = tiposPokemon[tipo1].cor
+            if(tipo2){
+                campoRes.style.background = `
+                    linear-gradient(135deg, ${cor1}, ${tiposPokemon[tipo2].cor})
+                `
+            }else{
+                campoRes.style.backgroundColor = cor1
+            }
+
+            const icone1 = tiposPokemon[tipo1].icon
+            const icone2 = tiposPokemon[tipo2]?.icon
 
             const fundoPokemon = document.querySelector('div#imagem')
 
 
             campoRes.innerHTML = ``
 
-            campoRes.innerHTML += `<div id="inicio"><p><b>${pokemon.name}</b></p><p><i class="${icone}"></i> <b>${pokemon.types.map(pos => pos.type.name).join(" - ")}</b></p></div>`
+            campoRes.innerHTML += `<div id="inicio"><p><b>${pokemon.name}</b></p><p><i class="${icone1}"></i> <b>${pokemon.types.map(pos => pos.type.name).join(` - <i class="${icone2}"></i>`)}</b></p></div>`
 
             campoRes.innerHTML += `<div id="imagem"><img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="imagem do ${pokemon.name}"></div>`
 
