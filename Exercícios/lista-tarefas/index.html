@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="separador">
+        <header>
+            <h1>Minha Tarefas</h1>
+        </header>
+        <main>
+            <p><input type="text" placeholder="Digite uma tarefa" name="tarefa" id="itarefa"><button id="btn-tarefa">Adicionar tarefa</button></p>
+            <p>Filtro:
+                <select name="Filtro" id="ifiltro">
+                    <option value="Todas">Todas</option>
+                    <option value="Pendentes">Pendentes</option>
+                    <option value="Concluídas">Concluídas</option>
+                </select>
+            </p>
+            <div id="lista-tarefas">
+            </div>
+            <p>Tarefas concluídas: </p>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; Desenvolvido por <a href="https://github.com/pedrogiacciani">Pedro Giacciani</a></p>
+    </footer>
+    <script type="module" src="scripts/app.js"></script>
 </body>
 </html>
