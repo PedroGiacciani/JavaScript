@@ -1,2 +1,27 @@
 @charset "UTF-8";
 
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: rgba(182, 182, 182, 0.795);
+}
+
+header, main{
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+main > p > input{
+    margin: 10px;
+    padding: 5px;
+}
+
+main > p > input > button{
+    padding: 10px;
+}
