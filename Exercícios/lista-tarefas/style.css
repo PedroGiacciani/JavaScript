@@ -36,6 +36,7 @@ main p{
 }
 
 main > div#lista-tarefas{
+    display: none;
     border: 1px solid black;
     border-radius: 10px;
 }

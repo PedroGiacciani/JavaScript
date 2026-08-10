@@ -14,14 +14,4 @@ campoTarefa.addEventListener('keypress', (event) => {
     if(event.key == 'Enter'){
         adicionarTarefa(campoTarefa.value, agoraBr, listaTarefas, areaTarefa)
     }
-})  
-
-function mostrarTarefas(){
-    areaTarefa.innerHTML += `
-        <div id="tarefa">
-            <p>${tarefa.id} ${tarefa.titulo} ${tarefa.concluida} ${tarefa.dataCriacao}</p>
-        </div> <
-        <button><i class="fa-solid fa-pencil"></i></button>
-        <button><i class="fa-solid fa-trash"></i></button>
-    `
-}
+})
