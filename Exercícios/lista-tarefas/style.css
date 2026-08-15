@@ -41,13 +41,13 @@ main > div#lista-tarefas p{
     padding: 20px 0px;
 }
 
-.concluida{
+mark.badge-true{
     background-color: green;
     border-radius: 10px;
     padding: 5px;
 }
 
-.incompleta{
+mark.badge-false{
     background-color: red;
     border-radius: 10px;
     padding: 5px;
