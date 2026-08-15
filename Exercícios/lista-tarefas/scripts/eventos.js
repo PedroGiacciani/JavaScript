@@ -16,10 +16,10 @@ export function listarDados(areaTarefa, listaTarefas){
             }else{
                 areaTarefa.innerHTML += `
                     <div id="tarefa">
-                        <p>${element.id} ${element.titulo} <mark class="marca">Em andamento</mark> ${element.dataCriacao}</p>
+                        <p>${element.id} ${element.titulo} <mark>Em andamento</mark> ${element.dataCriacao}</p>
                     </div>
                 ` 
-                let mark = document.getElementsByClassName('marca')
+                let mark = document.querySelector('mark')
                 mark.classList.add('incompleta')
             }
         })
