@@ -1,5 +1,5 @@
 import { Tarefa, adicionarTarefa } from "./tarefas.js";
-import { listarDados, filtrarTarefas, pesquisarTarefa, editarTarefa } from "./eventos.js";
+import { listarDados, filtrarTarefas, pesquisarTarefa } from "./eventos.js";
 
 let campoTarefa = document.getElementById('icampoTarefa')
 let btnTarefa = document.getElementById('btn-tarefa')
@@ -20,7 +20,7 @@ btnTarefa.addEventListener('click', () => {
     adicionarTarefa(campoTarefa.value, agoraBr, listaTarefas, areaTarefa, filtro)
     campoTarefa.value = ``
     campoTarefa.focus()
-    listarDados(areaTarefa, listaTarefas)
+    listarDados(areaTarefa, listaTarefas, concluidas)
 })
 
 campoTarefa.addEventListener('keypress', (event) => {
@@ -28,14 +28,12 @@ campoTarefa.addEventListener('keypress', (event) => {
         adicionarTarefa(campoTarefa.value, agoraBr, listaTarefas, areaTarefa, filtro)
         campoTarefa.value = ``
         campoTarefa.focus()
-        listarDados(areaTarefa, listaTarefas)
+        listarDados(areaTarefa, listaTarefas, concluidas)
     }
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-    listarDados(areaTarefa, listaTarefas)
-    let tarefasConcluidas = listaTarefas.filter(element => element.concluidas == true)
-    concluidas.innerHTML += `${tarefasConcluidas.length} / ${listaTarefas.length}` 
+    listarDados(areaTarefa, listaTarefas, concluidas)
 })
 
 filtro.addEventListener('change', () => filtrarTarefas(areaTarefa, listaTarefas, filtro))
