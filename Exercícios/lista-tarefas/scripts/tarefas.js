@@ -7,7 +7,8 @@ export class Tarefa{
     }
 }
 
-export function adicionarTarefa(titulo, dataCriacao, listaTarefas, areaTarefa){
+export function adicionarTarefa(titulo, dataCriacao, listaTarefas, areaTarefa, filtro){
+    filtro.value = "Todas"
     if(titulo.length == 0){
         alert("Digite um título para sua tarefa")
     } else{

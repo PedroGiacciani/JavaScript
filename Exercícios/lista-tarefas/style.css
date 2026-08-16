@@ -22,9 +22,13 @@ header, main{
     text-align: center;
 }
 
-main > p > input{
+main > div#menu > p{
+    font-size: 2em;
+}
+
+main > div#menu > p > input{
     margin: 10px;
-    padding: 5px;
+    padding: 1px;
 }
 
 main > div#lista-tarefas{
@@ -39,6 +43,10 @@ main > div#lista-tarefas p{
     margin: 3px 0px;
     width: 100%;
     padding: 20px 0px;
+}
+
+main > div#filtroTarefas > p{
+    margin: 20px 0px;
 }
 
 mark.badge-true{
