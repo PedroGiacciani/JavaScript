@@ -16,8 +16,6 @@ let concluidas = document.getElementById('tarefas-concluidas')
 
 let pesquisaTarefa = document.getElementById('ipesquisaTarefa')
 
-let tarefa = document.getElementById('tarefa')
-
 btnTarefa.addEventListener('click', () => {
     adicionarTarefa(campoTarefa.value, agoraBr, listaTarefas, areaTarefa, filtro)
     campoTarefa.value = ``
@@ -43,5 +41,3 @@ document.addEventListener('DOMContentLoaded', () => {
 filtro.addEventListener('change', () => filtrarTarefas(areaTarefa, listaTarefas, filtro))
 
 pesquisaTarefa.addEventListener('input', () => pesquisarTarefa(areaTarefa, listaTarefas, pesquisaTarefa.value))
-
-tarefa.addEventListener('dblclick', () => editarTarefa(tarefa))

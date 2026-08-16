@@ -32,17 +32,20 @@ main > div#menu > p > input{
 }
 
 main > div#lista-tarefas{
-    display: none;
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
-    margin: 30px;
-}
-
-main > div#lista-tarefas p{
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 3px 0px;
     width: 100%;
     padding: 20px 0px;
+}
+
+main > div#lista-tarefas > div.tarefa{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin: 2px;
 }
 
 main > div#filtroTarefas > p{
