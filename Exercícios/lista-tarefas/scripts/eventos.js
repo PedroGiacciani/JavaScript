@@ -1,15 +1,5 @@
 import { mostrarTarefas } from "./tarefas.js"
 
-export function listarDados(areaTarefa, listaTarefas, concluidas){
-    if(listaTarefas.length == 0){
-        areaTarefa.innerHTML = `Nenhuma tarefa cadastrada`
-    } else{
-        mostrarTarefas(areaTarefa, listaTarefas, concluidas)
-    }
-    let tarefasConcluidas = listaTarefas.filter(element => element.concluidas == true)
-    concluidas.innerHTML = `Tarefas concluidas: ${tarefasConcluidas.length} / ${listaTarefas.length}`
-}
-
 export function filtrarTarefas(areaTarefa, listaTarefas, filtro){
     let filtroTarefas = []
     if(filtro.value == 'Todas'){
@@ -17,7 +7,7 @@ export function filtrarTarefas(areaTarefa, listaTarefas, filtro){
     }else{
         filtroTarefas = listaTarefas.filter(element => String(element.concluida) == filtro.value)
     }
-    mostrarTarefas(areaTarefa, listaTarefas)
+    mostrarTarefas(areaTarefa, filtroTarefas)
     if(filtroTarefas.length == 0){
         areaTarefa.innerHTML = `Sem tarefas`
     }
@@ -25,7 +15,7 @@ export function filtrarTarefas(areaTarefa, listaTarefas, filtro){
 
 export function pesquisarTarefa(areaTarefa, listaTarefas, pesquisa){
     let filtroTarefas = listaTarefas.filter(element => element.titulo.toLowerCase().includes(pesquisa))
-    mostrarTarefas(areaTarefa.listaTarefas)
+    mostrarTarefas(areaTarefa, filtroTarefas)
     if(filtroTarefas.length == 0){
         areaTarefa.innerHTML = `Tarefa não encontrada`
     }
@@ -45,7 +35,6 @@ export function editarTarefa(nomeTarefa, index, areaTarefa, listaTarefas){
 }
 
 export function mudarStatusTarefa(element, checkbox, listaTarefas, areaTarefa){
-    console.log(checkbox.checked)
     if(checkbox.checked){
         element.concluida = true
     }else{

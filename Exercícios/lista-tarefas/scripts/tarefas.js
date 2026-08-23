@@ -1,6 +1,6 @@
-import { editarTarefa, mudarStatusTarefa, listarDados } from "./eventos.js"
+import { editarTarefa, mudarStatusTarefa } from "./eventos.js"
 
-export class Tarefa{
+class Tarefa{
     constructor(id, titulo, concluida, dataCriacao){
         this.id = id
         this.titulo = titulo
@@ -9,7 +9,7 @@ export class Tarefa{
     }
 }
 
-export function adicionarTarefa(titulo, dataCriacao, listaTarefas, areaTarefa, filtro){
+export function adicionarTarefa(titulo, dataCriacao, listaTarefas, filtro){
     filtro.value = "Todas"
     if(titulo.length == 0){
         alert("Digite um título para sua tarefa")
@@ -21,58 +21,75 @@ export function adicionarTarefa(titulo, dataCriacao, listaTarefas, areaTarefa, f
 }
 
 
-export function mostrarTarefas(areaTarefa, listaTarefas, concluidas){
-    areaTarefa.innerHTML = `` 
-    listaTarefas.forEach(element =>{
-        const cardTarefa = document.createElement('div')
-        const check = document.createElement('input')
-        const id = document.createElement('p')
-        const titulo = document.createElement('p')
-        const status = document.createElement('p')
-        const mark = document.createElement('mark')
-        const data = document.createElement('p')
-        const lixeira = document.createElement('i')
-        
-        status.appendChild(mark)
-        cardTarefa.appendChild(check)
-        cardTarefa.appendChild(id)
-        cardTarefa.appendChild(titulo)
-        cardTarefa.appendChild(status)
-        cardTarefa.appendChild(data)
-        cardTarefa.appendChild(lixeira)
-        
-        cardTarefa.classList.add('tarefa')
-        mark.classList.add(`badge-${element.concluida}`)
-        titulo.classList.add('nome-tarefa')
-        lixeira.classList.add('fa-solid')
-        lixeira.classList.add('fa-trash')
-        check.type = 'checkbox'
+export function mostrarTarefas(areaTarefa, listaTarefas){
+    areaTarefa.innerHTML = ``
+    if(listaTarefas.length == 0){
+        areaTarefa.innerHTML = `Nenhuma tarefa cadastrada`
+    } else{
+        listaTarefas.forEach(element =>{
+            const cardTarefa = document.createElement('div')
+            const check = document.createElement('input')
+            const id = document.createElement('p')
+            const titulo = document.createElement('p')
+            const status = document.createElement('p')
+            const mark = document.createElement('mark')
+            const data = document.createElement('p')
+            const lixeira = document.createElement('i')
+            
+            status.appendChild(mark)
+            cardTarefa.appendChild(check)
+            cardTarefa.appendChild(id)
+            cardTarefa.appendChild(titulo)
+            cardTarefa.appendChild(status)
+            cardTarefa.appendChild(data)
+            cardTarefa.appendChild(lixeira)
+            
+            cardTarefa.classList.add('tarefa')
+            mark.classList.add(`badge-${element.concluida}`)
+            titulo.classList.add('nome-tarefa')
+            lixeira.classList.add('fa-solid')
+            lixeira.classList.add('fa-trash')
+            check.type = 'checkbox'
+            
+            id.textContent = `${element.id}`
+            titulo.textContent = `${element.titulo}`
+            data.textContent = `${element.dataCriacao}`
+            
+            if(element.concluida){
+                mark.textContent = 'Concluida'
+                check.checked = true
+            }else{
+                mark.textContent = 'Em andamento'
+                check.checked = false
+            }
 
-        id.textContent = `${element.id}`
-        titulo.textContent = `${element.titulo}`
-        data.textContent = `${element.dataCriacao}`
-    
-        if(element.concluida){
-            mark.textContent = 'Concluida'
-            check.checked = true
-        }else{
-            mark.textContent = 'Em andamento'
-            check.checked = false
-        }
+            areaTarefa.appendChild(cardTarefa)
+            let index = listaTarefas.indexOf(element)
+            let nomeTarefa = document.getElementsByClassName('nome-tarefa')
+            nomeTarefa[index].addEventListener('dblclick', () => editarTarefa(nomeTarefa[index], index, areaTarefa, listaTarefas))
 
-        areaTarefa.appendChild(cardTarefa)
-        let index = listaTarefas.indexOf(element)
-        let nomeTarefa = document.getElementsByClassName('nome-tarefa')
-        nomeTarefa[index].addEventListener('dblclick', () => editarTarefa(nomeTarefa[index], index, areaTarefa, listaTarefas))
+            check.addEventListener('change', () => mudarStatusTarefa(element, check, listaTarefas, areaTarefa))
 
-        check.addEventListener('change', () => mudarStatusTarefa(element, check, listaTarefas, areaTarefa))
+            lixeira.addEventListener('click', () => excluirTarefa(areaTarefa, listaTarefas, index))
 
-        lixeira.addEventListener('click', () => excluirTarefa(areaTarefa, listaTarefas, index, concluidas))
-    })
+        })
+    }
+    atualizar(listaTarefas)
 }
 
-function excluirTarefa(areaTarefa, listaTarefas, index, concluidas){
+function excluirTarefa(areaTarefa, listaTarefas, index){
     listaTarefas.splice(index, 1)
     localStorage.setItem('bancoTarefas', JSON.stringify(listaTarefas))
-    listarDados(areaTarefa, listaTarefas, concluidas)
+    mostrarTarefas(areaTarefa, listaTarefas)
+}
+
+function atualizar(listaTarefas){
+    let concluidas = document.getElementById('tarefas-concluidas')
+    let tarefasConcluidas = listaTarefas.filter(element => element.concluida == true)
+    console.log(listaTarefas)
+    if(listaTarefas.length == 0){
+        concluidas.innerHTML = `Tarefas concluidas: 0 / 0`
+    }else{
+        concluidas.innerHTML = `Tarefas concluidas: ${tarefasConcluidas.length} / ${listaTarefas.length}`
+    }
 }
