@@ -20,7 +20,6 @@ export function adicionarTarefa(titulo, dataCriacao, listaTarefas, filtro){
     }
 }
 
-
 export function mostrarTarefas(areaTarefa, listaTarefas){
     areaTarefa.innerHTML = ``
     if(listaTarefas.length == 0){

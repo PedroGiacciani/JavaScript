@@ -34,12 +34,28 @@ export function editarTarefa(nomeTarefa, index, areaTarefa, listaTarefas){
     })
 }
 
-export function mudarStatusTarefa(element, checkbox, listaTarefas, areaTarefa){
-    if(checkbox.checked){
-        element.concluida = true
-    }else{
-        element.concluida = false
-    }
+export async function mudarStatusTarefa(element, checkbox, listaTarefas, areaTarefa){
+    const promise = new Promise((resolve) => {
+        setTimeout(() => {
+            if(checkbox.checked){
+                resolve(element.concluida = true)
+            }else{
+                resolve(element.concluida = false)
+            }
+        }, 2000)
+    })
+
+    let msg = document.getElementById('msg')
+    msg.innerHTML = `Salvando alterações...`
+
+    await promise
+    msg.innerHTML = ``
     localStorage.setItem('bancoTarefas', JSON.stringify(listaTarefas))
     mostrarTarefas(areaTarefa, listaTarefas)
+
+    // promisse.then(() => {
+    //     msg.innerHTML = ``
+    //     localStorage.setItem('bancoTarefas', JSON.stringify(listaTarefas))
+    //     mostrarTarefas(areaTarefa, listaTarefas)
+    // })
 }
