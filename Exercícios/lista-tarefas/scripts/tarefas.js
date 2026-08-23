@@ -71,7 +71,6 @@ export function mostrarTarefas(areaTarefa, listaTarefas){
             check.addEventListener('change', () => mudarStatusTarefa(element, check, listaTarefas, areaTarefa))
 
             lixeira.addEventListener('click', () => excluirTarefa(areaTarefa, listaTarefas, index))
-
         })
     }
     atualizar(listaTarefas)
