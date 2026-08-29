@@ -11,12 +11,12 @@ class Tarefa{
 
 export function adicionarTarefa(titulo, dataCriacao, listaTarefas, filtro){
     filtro.value = "Todas"
-    let regex1 = /^.{3,14}$/
+    let regex1 = /^.{3,30}$/
     let regex2 = /^[\w.-]/
     if(titulo.length == 0){
         alert("Digite um título para sua tarefa")
     }else if(!regex1.test(titulo) || !regex2.test(titulo)){
-        alert("Sua tarefa precisa ter entre 3 e 14 caracteres e não pode começar com espaço ou caractéres especiais!!!")
+        alert("Sua tarefa precisa ter entre 3 e 30 caracteres e não pode começar com espaço ou caractéres especiais!!!")
     }else{
         const tarefa = new Tarefa(Math.floor(Math.random() * 1111), titulo, false, dataCriacao)
         listaTarefas.push(tarefa)
@@ -32,29 +32,23 @@ export function mostrarTarefas(areaTarefa, listaTarefas){
         listaTarefas.forEach(element =>{
             const cardTarefa = document.createElement('div')
             const check = document.createElement('input')
-            const id = document.createElement('p')
             const titulo = document.createElement('p')
             const status = document.createElement('p')
             const mark = document.createElement('mark')
             const data = document.createElement('p')
-            const lixeira = document.createElement('i')
+            
             
             status.appendChild(mark)
             cardTarefa.appendChild(check)
-            cardTarefa.appendChild(id)
             cardTarefa.appendChild(titulo)
             cardTarefa.appendChild(status)
             cardTarefa.appendChild(data)
-            cardTarefa.appendChild(lixeira)
             
             cardTarefa.classList.add('tarefa')
             mark.classList.add(`badge-${element.concluida}`)
             titulo.classList.add('nome-tarefa')
-            lixeira.classList.add('fa-solid')
-            lixeira.classList.add('fa-trash')
             check.type = 'checkbox'
             
-            id.textContent = `${element.id}`
             titulo.textContent = `${element.titulo}`
             data.textContent = `${element.dataCriacao}`
             
@@ -66,14 +60,48 @@ export function mostrarTarefas(areaTarefa, listaTarefas){
                 check.checked = false
             }
 
+            let menu = document.createElement('dialog')
+            document.body.appendChild(menu)
+
+            let excluir = document.createElement('p')
+            excluir.textContent = `Excluir tarefa`
+            let editar = document.createElement('p')
+            editar.textContent = `Editar tarefa`
+
+            const lixeira = document.createElement('i')
+            lixeira.classList.add('fa-solid')
+            lixeira.classList.add('fa-trash')
+
+            const lapis = document.createElement('i')
+            lapis.classList.add('fa-solid')
+            lapis.classList.add('fa-pencil')
+
+            excluir.appendChild(lixeira)
+            editar.appendChild(lapis)
+            menu.appendChild(excluir)
+            menu.appendChild(editar)
+
             areaTarefa.appendChild(cardTarefa)
             let index = listaTarefas.indexOf(element)
             let nomeTarefa = document.getElementsByClassName('nome-tarefa')
             nomeTarefa[index].addEventListener('dblclick', () => editarTarefa(nomeTarefa[index], index, areaTarefa, listaTarefas))
 
-            check.addEventListener('change', () => mudarStatusTarefa(element, check, listaTarefas, areaTarefa))
+            cardTarefa.addEventListener('contextmenu', (event) => {
+                event.preventDefault()
+                menu.style.top = `${event.clientY}px`
+                if(event.clientX/window.innerWidth * 100 > 70){
+                    menu.style.left = `${event.clientX - 150}px`
+                }else{
+                    menu.style.left = `${event.clientX}px`
+                }
+                menu.show()
+            })
 
-            lixeira.addEventListener('click', () => excluirTarefa(areaTarefa, listaTarefas, index))
+            excluir.addEventListener('click', () => excluirTarefa(areaTarefa, listaTarefas, index))
+            editar.addEventListener('click', () => editarTarefa(nomeTarefa[index], index, areaTarefa, listaTarefas))
+            menu.addEventListener('mouseleave', () => menu.close())
+
+            check.addEventListener('change', () => mudarStatusTarefa(element, check, listaTarefas, areaTarefa))
         })
     }
     atualizar(listaTarefas)

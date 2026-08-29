@@ -73,6 +73,22 @@ mark.badge-false{
     padding: 5px;
 }
 
+dialog{
+    font-size: 1em;
+    padding: 5px;
+    width: 150px;
+}
+
+dialog > p{
+    margin: 10px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+dialog > p:hover{
+    background-color: rgba(0, 0, 0, 0.253);
+    border-radius: 5px;
+}
 
 footer{
     background-color: white;
