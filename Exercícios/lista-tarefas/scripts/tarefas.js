@@ -1,8 +1,7 @@
 import { editarTarefa, mudarStatusTarefa } from "./eventos.js"
 
 class Tarefa{
-    constructor(id, titulo, concluida, dataCriacao){
-        this.id = id
+    constructor(titulo, concluida, dataCriacao){
         this.titulo = titulo
         this.concluida = concluida
         this.dataCriacao = dataCriacao
@@ -18,7 +17,7 @@ export function adicionarTarefa(titulo, dataCriacao, listaTarefas, filtro){
     }else if(!regex1.test(titulo) || !regex2.test(titulo)){
         alert("Sua tarefa precisa ter entre 3 e 30 caracteres e não pode começar com espaço ou caractéres especiais!!!")
     }else{
-        const tarefa = new Tarefa(Math.floor(Math.random() * 1111), titulo, false, dataCriacao)
+        const tarefa = new Tarefa(titulo, false, dataCriacao)
         listaTarefas.push(tarefa)
         localStorage.setItem('bancoTarefas', JSON.stringify(listaTarefas))
     }
@@ -120,7 +119,6 @@ function excluirTarefa(areaTarefa, listaTarefas, index){
 function atualizar(listaTarefas){
     let concluidas = document.getElementById('tarefas-concluidas')
     let tarefasConcluidas = listaTarefas.filter(element => element.concluida == true)
-    console.log(listaTarefas)
     if(listaTarefas.length == 0){
         concluidas.innerHTML = `Tarefas concluidas: 0 / 0`
     }else{
