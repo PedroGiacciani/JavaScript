@@ -22,16 +22,31 @@ const re = /[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}/ //Validar formato CPF
 const re2 = /[0-9]{2}$/ //Teste com $ e ^
 console.log(re2.test(n))
 
-let data = '07/17/2007'
+let data = '2007/12/17'
 const reData = /^(\d{4})\/(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])$/
 const reData2 = /^(\d{4})\/(0?[1-9]|1[0-2])\/(0?[1-9]|[12][0-9]|3[01])$/
 const reData3 = /^(0?[1-9]|1[0-2])\/(\d{4})\/(0?[1-9]|[12][0-9]|3[01])$/
 const reData4 = /^(0?[1-9]|1[0-2])\/(0?[1-9]|[12][0-9]|3[01])\/(\d{4})$/
-console.log(reData.test(data))
+const reData5 = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/(\d{4})$/
+const reData6 = /^(0?[1-9]|[12][0-9]|3[01])\/(\d{4})\/(0?[1-9]|1[0-2])$/
 
-if(reData.test(data) || reData2.test(data) || reData3.test(data) || reData4.test(data)){
-    novaData = data.replace(reData, "$2/$3/$1")
+if(reData.test(data)){
+    let novaData = data.replace(reData, "$2/$3/$1")
+    console.log(novaData)
+}else if(reData2.test(data)){
+    let novaData = data.replace(reData2, "$3/$2/$1")
+    console.log(novaData)
+}else if(reData3.test(data)){
+    let novaData = data.replace(reData3, "$3/$1/$2")
+    console.log(novaData)
+}else if(reData4.test(data)){
+    let novaData = data.replace(reData4, "$2/$1/$3")
+    console.log(novaData)
+}else if(reData5.test(data)){
+    console.log(`A data está ok ${data}`)
+}else if(reData6.test(data)){
+    let novaData = data.replace(reData6, "$1/$3/$2")
     console.log(novaData)
 }else{
-    console.log(`A data está ok ${data}`)
+    console.log("Formato de data inválido")
 }
