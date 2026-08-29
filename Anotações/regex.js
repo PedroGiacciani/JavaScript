@@ -22,14 +22,16 @@ const re = /[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}/ //Validar formato CPF
 const re2 = /[0-9]{2}$/ //Teste com $ e ^
 console.log(re2.test(n))
 
-let data = '2026/23/08'
-const reData = /([0-9]{4})\/([01][0-9])\/([0-9]{2})/
+let data = '07/17/2007'
+const reData = /^(\d{4})\/(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])$/
+const reData2 = /^(\d{4})\/(0?[1-9]|1[0-2])\/(0?[1-9]|[12][0-9]|3[01])$/
+const reData3 = /^(0?[1-9]|1[0-2])\/(\d{4})\/(0?[1-9]|[12][0-9]|3[01])$/
+const reData4 = /^(0?[1-9]|1[0-2])\/(0?[1-9]|[12][0-9]|3[01])\/(\d{4})$/
+console.log(reData.test(data))
 
-let resultado = data.match(reData)
-
-if(resultado){
-    novaData = data.replace(reData, '$3/$2/$1')
+if(reData.test(data) || reData2.test(data) || reData3.test(data) || reData4.test(data)){
+    novaData = data.replace(reData, "$2/$3/$1")
     console.log(novaData)
 }else{
-    console.log('ok')
+    console.log(`A data está ok ${data}`)
 }
