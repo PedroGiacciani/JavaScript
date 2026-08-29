@@ -11,9 +11,13 @@ class Tarefa{
 
 export function adicionarTarefa(titulo, dataCriacao, listaTarefas, filtro){
     filtro.value = "Todas"
+    let regex1 = /^.{3,14}$/
+    let regex2 = /^[\w.-]/
     if(titulo.length == 0){
         alert("Digite um título para sua tarefa")
-    } else{
+    }else if(!regex1.test(titulo) || !regex2.test(titulo)){
+        alert("Sua tarefa precisa ter entre 3 e 14 caracteres e não pode começar com espaço ou caractéres especiais!!!")
+    }else{
         const tarefa = new Tarefa(Math.floor(Math.random() * 1111), titulo, false, dataCriacao)
         listaTarefas.push(tarefa)
         localStorage.setItem('bancoTarefas', JSON.stringify(listaTarefas))
