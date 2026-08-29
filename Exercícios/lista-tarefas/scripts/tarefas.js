@@ -29,6 +29,29 @@ export function mostrarTarefas(areaTarefa, listaTarefas){
     if(listaTarefas.length == 0){
         areaTarefa.innerHTML = `Nenhuma tarefa cadastrada`
     } else{
+        let menu = document.createElement('dialog')
+        document.body.appendChild(menu)
+
+        let excluir = document.createElement('p')
+        excluir.textContent = `Excluir tarefa`
+        let editar = document.createElement('p')
+        editar.textContent = `Editar tarefa`
+
+        const lixeira = document.createElement('i')
+        lixeira.classList.add('fa-solid')
+        lixeira.classList.add('fa-trash')
+
+        const lapis = document.createElement('i')
+        lapis.classList.add('fa-solid')
+        lapis.classList.add('fa-pencil')
+
+        excluir.appendChild(lixeira)
+        editar.appendChild(lapis)
+        menu.appendChild(excluir)
+        menu.appendChild(editar)
+
+        menu.addEventListener('mouseleave', () => menu.close())
+        
         listaTarefas.forEach(element =>{
             const cardTarefa = document.createElement('div')
             const check = document.createElement('input')
@@ -59,28 +82,7 @@ export function mostrarTarefas(areaTarefa, listaTarefas){
                 mark.textContent = 'Em andamento'
                 check.checked = false
             }
-
-            let menu = document.createElement('dialog')
-            document.body.appendChild(menu)
-
-            let excluir = document.createElement('p')
-            excluir.textContent = `Excluir tarefa`
-            let editar = document.createElement('p')
-            editar.textContent = `Editar tarefa`
-
-            const lixeira = document.createElement('i')
-            lixeira.classList.add('fa-solid')
-            lixeira.classList.add('fa-trash')
-
-            const lapis = document.createElement('i')
-            lapis.classList.add('fa-solid')
-            lapis.classList.add('fa-pencil')
-
-            excluir.appendChild(lixeira)
-            editar.appendChild(lapis)
-            menu.appendChild(excluir)
-            menu.appendChild(editar)
-
+            
             areaTarefa.appendChild(cardTarefa)
             let index = listaTarefas.indexOf(element)
             let nomeTarefa = document.getElementsByClassName('nome-tarefa')
@@ -97,9 +99,11 @@ export function mostrarTarefas(areaTarefa, listaTarefas){
                 menu.show()
             })
 
-            excluir.addEventListener('click', () => excluirTarefa(areaTarefa, listaTarefas, index))
+            excluir.addEventListener('click', () => {
+                excluirTarefa(areaTarefa, listaTarefas, index)
+                menu.close()
+            })
             editar.addEventListener('click', () => editarTarefa(nomeTarefa[index], index, areaTarefa, listaTarefas))
-            menu.addEventListener('mouseleave', () => menu.close())
 
             check.addEventListener('change', () => mudarStatusTarefa(element, check, listaTarefas, areaTarefa))
         })
